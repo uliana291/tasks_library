@@ -1,0 +1,104 @@
+<%= form_for(@task, :url => {:controller => 'tasks', :action => 'create'},
+             :html => {:class => 'form-horizontal', :role => 'form', multipart: true}) do |f| %>
+    <%= render 'shared/error_messages' %>
+
+    <div class="form-group">
+
+      <%= link_to "Назад", root_path, :class => 'btn btn-primary col-sm-1' %>
+
+      <div class="col-sm-11">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :univer, "Университет", :class => 'control-label col-sm-5' %>
+      <div class="col-sm-3">
+        <%= f.select :univer, [['Технический университет Брно', 1], ['Масариков университет', 2]], {}, {:class => "form-control"} %>
+      </div>
+      <div class="col-sm-4">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :variant, "Вариант №", :class => 'control-label col-sm-5' %>
+      <div class="col-sm-3">
+        <%= f.number_field :variant, :class => 'form-control' %>
+      </div>
+      <div class="col-sm-4">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :number, "Номер задачи", :class => 'control-label col-sm-5' %>
+      <div class="col-sm-3">
+        <%= f.number_field :number, :class => 'form-control' %>
+      </div>
+      <div class="col-sm-4">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :type_t, "Тип задачи", :class => 'control-label col-sm-5' %>
+      <div class="col-sm-3">
+        <%= f.text_field :type_t, :class => 'form-control' %>
+      </div>
+      <div class="col-sm-4">
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <%= f.label :czech_text, "Чешский текст", :class => 'control-label col-sm-5' %>
+      <div class="col-sm-4">
+        <%= f.text_area :czech_text, :class => 'form-control' %>
+      </div>
+      <div class="col-sm-4">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :russian_text, "Русский текст", :class => 'control-label col-sm-5' %>
+      <div class="col-sm-4">
+        <%= f.text_area :russian_text, :class => 'form-control' %>
+      </div>
+      <div class="col-sm-3">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :photo, "Добавить изображение", :class => 'control-label col-sm-5' %>
+      <div class="col-sm-3">
+        <%= f.file_field :photo, :class => 'filestyle', :accept => 'image/png,image/gif,image/jpeg' %>
+      </div>
+      <div class="col-sm-4">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :solved, "Решена?", :class => 'control-label col-sm-5' %>
+      <div class="col-sm-1">
+        <%= f.check_box :solved %>
+      </div>
+      <div class="col-sm-6">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :answer, "Ответ", :class => 'control-label col-sm-5' %>
+      <div class="col-sm-4">
+        <%= f.text_area :answer, :class => 'form-control' %>
+      </div>
+      <div class="col-sm-3">
+      </div>
+    </div>
+
+
+    <hr>
+    <div class="form-group">
+      <div class="col-sm-2">
+      </div>
+      <div class="col-sm-10" style="text-align: center">
+        <%= f.submit "Создать задачу", {class: "btn btn-large btn-primary", style: "width: 170px"} %>
+      </div>
+    </div>
+<% end %>

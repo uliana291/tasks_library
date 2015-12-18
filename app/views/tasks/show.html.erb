@@ -1,0 +1,71 @@
+<%= form_for(@task, :url => {:controller => 'tasks', :action => 'show'},
+             :html => {:class => 'form-horizontal', :role => 'form', multipart: true}) do |f| %>
+
+    <h1>
+      Задача <%= (@task.univer == 1 ? 'Технического университета Брно' : 'Масарикова университета') %>
+      вариант <%= @task.variant %>, № <%= @task.number %>
+    </h1>
+
+    <div>
+      <%= link_to 'Редактировать', edit_task_path(@task), :class => 'btn btn-primary' %>
+      <%= link_to 'Удалить', @task, method: :delete,
+                      data: {confirm: 'Вы уверены?'},  :class => 'btn btn-primary' %>
+    </div>
+
+    <hr/>
+
+    <div class="form-group">
+      <%= f.label :type_t, "Тип задачи", :class => 'control-label col-sm-2' %>
+      <div class="col-sm-5">
+        <%= @task.type_t %>
+      </div>
+      <div class="col-sm-5">
+      </div>
+    </div>
+
+    <hr/>
+
+    <div class="form-group">
+      <%= f.label :czech_text, "Чешский", :class => 'control-label col-sm-2' %>
+      <div class="col-sm-6">
+        <%= @task.czech_text %>
+      </div>
+      <div class="col-sm-4">
+      </div>
+    </div>
+
+    <hr/>
+
+    <div class="form-group">
+      <%= f.label :russian_text, "Русский", :class => 'control-label col-sm-2' %>
+      <div class="col-sm-6">
+        <%= @task.russian_text %>
+      </div>
+      <div class="col-sm-4">
+      </div>
+    </div>
+
+    <hr/>
+
+    <% if !(@task.photo.blank?) %>
+        <div class="form-group">
+          <div class="col-sm-1">
+          </div>
+          <div class="col-sm-11">
+            <%= image_tag @task.photo.url %>
+          </div>
+        </div>
+    <% end %>
+
+    <hr/>
+
+    <div class="form-group">
+      <%= f.label :answer, "Ответ", :class => 'control-label col-sm-2' %>
+      <div class="col-sm-6">
+        <%= @task.answer %>
+      </div>
+      <div class="col-sm-4">
+      </div>
+    </div>
+
+<% end %>

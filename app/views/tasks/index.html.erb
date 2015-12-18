@@ -1,0 +1,46 @@
+<h1 id="h1_tasks">Все задачи</h1>
+
+
+<%= link_to 'Создать задачу', new_task_path, class: 'btn btn-primary' %>
+
+<hr/>
+
+<div>
+  <a id="vutbr_show" class='btn btn-lg btn-primary'>Технический университет Брно</a>
+  <%= render 'vutbr' %>
+  <a id="mas_show" class='btn btn-lg btn-primary'>Масариков университет</a>
+  <%= render 'masarikov' %>
+</div>
+<br/>
+<script>
+    $(document).ready(function () {
+        $("#vutbr_show").click(function () {
+            $( "#h1_tasks" ).text( "Задачи технического университета Брно" );
+            $("#vutbr_show").hide(100);
+            $("#mas_show").hide(100);
+            $("#vutbr").show("slow");
+        });
+
+        $("#mas_show").click(function () {
+            $( "#h1_tasks" ).text( "Задачи Масарикова университета" );
+            $("#vutbr_show").hide(100);
+            $("#mas_show").hide(100);
+            $("#masarikov").show("slow");
+        });
+
+        $("#masarikov_hide").click(function () {
+            $( "#h1_tasks" ).text( "Все задачи" );
+            $("#masarikov").hide(100);
+            $("#vutbr_show").show("slow");
+            $("#mas_show").show("slow");
+
+        });
+
+        $("#vutbr_hide").click(function () {
+            $( "#h1_tasks" ).text( "Все задачи" );
+            $("#vutbr").hide(100);
+            $("#vutbr_show").show("slow");
+            $("#mas_show").show("slow");
+        });
+    });
+</script>

@@ -1,0 +1,43 @@
+<div style="display: none" id="masarikov">
+
+  <div>
+    <a id="masarikov_hide" class='btn btn-primary'>Назад</a>
+  </div>
+
+  <hr/>
+
+  <% if @tasks_masarikov.any? %>
+
+      <%= will_paginate @tasks_masarikov, renderer: BootstrapPagination::Rails %>
+      <table class="table table-hover">
+        <tr>
+          <th>Вариант</th>
+          <th>№</th>
+          <th>Тип</th>
+          <th>Решена</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+
+        <% @tasks_masarikov.each do |task| %>
+            <tr>
+              <td><%= task.variant %></td>
+              <td><%= task.number %></td>
+              <td><%= task.type_t %></td>
+              <td><%= (task.solved ? '+' : '-') %></td>
+              <td><%= link_to 'Показать', task %></td>
+              <td><%= link_to 'Редактировать', edit_task_path(task) %></td>
+              <td><%= link_to 'Удалить', task, method: :delete,
+                              data: {confirm: 'Вы уверены?'} %></td>
+            </tr>
+        <% end %>
+      </table>
+
+      <%= will_paginate @tasks_masarikov, renderer: BootstrapPagination::Rails %>
+  <% else %>
+      <h3 style="text-align: center">Задач пока нет</h3>
+  <% end %>
+
+  <br/>
+</div>
