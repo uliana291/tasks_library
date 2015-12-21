@@ -28,7 +28,7 @@
     <div class="form-group">
       <%= f.label :czech_text, "Чешский", :class => 'control-label col-sm-2' %>
       <div class="col-sm-6">
-        <%= @task.czech_text %>
+        <%= markdown(@task.czech_text) %>
       </div>
       <div class="col-sm-4">
       </div>
@@ -39,7 +39,7 @@
     <div class="form-group">
       <%= f.label :russian_text, "Русский", :class => 'control-label col-sm-2' %>
       <div class="col-sm-6">
-        <%= @task.russian_text %>
+        <%= markdown(@task.russian_text) %>
       </div>
       <div class="col-sm-4">
       </div>
@@ -53,6 +53,7 @@
           </div>
           <div class="col-sm-11">
             <%= image_tag @task.photo.url %>
+            <td><%= link_to 'Удалить картинку', delete_image_path(@task.id), method: :put %></td>
           </div>
         </div>
     <% end %>
@@ -62,7 +63,7 @@
     <div class="form-group">
       <%= f.label :answer, "Ответ", :class => 'control-label col-sm-2' %>
       <div class="col-sm-6">
-        <%= @task.answer %>
+        <%= markdown(@task.answer) %>
       </div>
       <div class="col-sm-4">
       </div>

@@ -46,6 +46,13 @@ class TasksController < ApplicationController
     redirect_to root_path
   end
 
+  def delete_image
+    @task = Task.find(params[:id])
+    @task.photo = nil
+    @task.save!
+    redirect_to :back
+  end
+
   private
 
   def task_params
