@@ -13,7 +13,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.save
       flash[:success] = "Задача создана"
-      render 'new'
+      redirect_to :back
     else
       render 'new'
     end
