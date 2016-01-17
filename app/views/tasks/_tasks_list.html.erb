@@ -1,0 +1,30 @@
+<% if @tasks.any? %>
+    <br/>
+    <div id="paginator" style="float: none">
+      <%= paginate @tasks, :remote => true %>
+    </div>
+    <br/>
+
+    <table class="table table-hover">
+      <thead>
+
+      <tr>
+        <th>Вариант</th>
+        <th>№</th>
+        <th>Тип</th>
+        <th>Решена</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody id="tasks_content">
+      <%= render 'tasks_list_tr' %>
+      </tbody>
+    </table>
+
+
+<% else %>
+    <h3 style="text-align: center">Задач пока нет</h3>
+<% end %>
+

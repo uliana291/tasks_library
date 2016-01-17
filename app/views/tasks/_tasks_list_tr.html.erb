@@ -1,0 +1,12 @@
+<% @tasks.each do |task| %>
+    <tr>
+      <td><%= task.variant %></td>
+      <td><%= task.number %></td>
+      <td><%= task.type_t %></td>
+      <td><%= (task.solved ? '+' : '-') %></td>
+      <td><%= link_to image_tag(Rails.public_path+'/menu55.png'), task %></td>
+      <td><%= link_to image_tag(Rails.public_path+'/edit45.png'), edit_task_path(task) %></td>
+      <td><%= link_to image_tag(Rails.public_path+'/delete96.png'), task, method: :delete,
+                      data: {confirm: 'Вы уверены?'} %></td>
+    </tr>
+<% end %>

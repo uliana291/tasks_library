@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   put 'tasks/:id/delete_image' => 'tasks#delete_image', as: :delete_image
 
+  get 'api_tasks' => 'tasks#api_tasks'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

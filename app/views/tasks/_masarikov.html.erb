@@ -8,6 +8,18 @@
 
   <% if @tasks_masarikov.any? %>
 
+      <div class="form-group">
+        <div class="col-sm-4">
+          <%= select_tag "variant_search", options_from_collection_for_select(@tasks_masarikov.select(:variant).uniq, "variant", "variant"), prompt: "Выбрать вариант", class: 'form-control' %>
+        </div>
+        <div class="col-sm-4">
+          <%= select_tag "type_t_search", options_from_collection_for_select(@tasks_masarikov.select(:type_t).uniq, "type_t", "type_t"), prompt: "Выбрать тип", class: 'form-control' %>
+        </div>
+        <div class="col-sm-4">
+          <%= select_tag "solved_search", "<option value='1'>+</option><option value='0'>-</option>".html_safe, prompt: "Выбрать решенные", class: 'form-control' %>
+        </div>
+      </div>
+
       <%= will_paginate @tasks_masarikov, renderer: BootstrapPagination::Rails %>
       <table class="table table-hover">
         <tr>
@@ -26,15 +38,16 @@
               <td><%= task.number %></td>
               <td><%= task.type_t %></td>
               <td><%= (task.solved ? '+' : '-') %></td>
-              <td><%= link_to 'Показать', task %></td>
-              <td><%= link_to 'Редактировать', edit_task_path(task) %></td>
-              <td><%= link_to 'Удалить', task, method: :delete,
+              <td><%= link_to image_tag(Rails.public_path+'/menu55.png'), task %></td>
+              <td><%= link_to image_tag(Rails.public_path+'/edit45.png'), edit_task_path(task) %></td>
+              <td><%= link_to image_tag(Rails.public_path+'/delete96.png'), task, method: :delete,
                               data: {confirm: 'Вы уверены?'} %></td>
             </tr>
         <% end %>
       </table>
 
       <%= will_paginate @tasks_masarikov, renderer: BootstrapPagination::Rails %>
+
   <% else %>
       <h3 style="text-align: center">Задач пока нет</h3>
   <% end %>

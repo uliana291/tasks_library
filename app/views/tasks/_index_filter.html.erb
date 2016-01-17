@@ -1,0 +1,17 @@
+<div class="form-group">
+  <form id="index_filter_form">
+    <div class="col-sm-4">
+      <%= select_tag "univer_search", options_for_select({'Масариков университет' => '2', 'Технический университет Брно' => '1'}, params[:univer_search]), prompt: "Выбрать универ", class: 'form-control' %>
+    </div>
+    <div class="col-sm-4">
+      <%= select_tag "variant_search", options_from_collection_for_select(Task.select(:variant).uniq, "variant", "variant", params[:variant_search]), prompt: "Выбрать вариант", class: 'form-control' %>
+    </div>
+    <div class="col-sm-4">
+      <%= select_tag "type_t_search", options_from_collection_for_select(Task.select(:type_t).uniq, "type_t", "type_t", params[:type_t_search]), prompt: "Выбрать тип", class: 'form-control' %>
+    </div>
+    <div class="col-sm-4">
+      <%= select_tag "solved_search", options_for_select(@solved, params[:solved_search]), prompt: "Выбрать решенные", class: 'form-control' %>
+    </div>
+    <a style="display: none;" class="current_page" href="/tasks?page=<%= @tasks.current_page %>" data-remote="true">current_page</a>
+  </form>
+</div>

@@ -1,0 +1,7 @@
+console.log("index.js.erb works");
+$('#tasks_content').html("<%= escape_javascript render('tasks_list_tr') %>");
+$('#index_filter').html("<%= escape_javascript render('index_filter') %>");
+
+$('#paginator').html('<%= escape_javascript(paginate(@tasks, :remote => true).to_s) %>');
+
+window.setup_handlers();

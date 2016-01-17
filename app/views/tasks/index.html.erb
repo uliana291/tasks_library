@@ -6,41 +6,60 @@
 <hr/>
 
 <div>
-  <a id="vutbr_show" class='btn btn-lg btn-primary'>Технический университет Брно</a>
-  <%= render 'vutbr' %>
-  <a id="mas_show" class='btn btn-lg btn-primary'>Масариков университет</a>
-  <%= render 'masarikov' %>
+  <div id="univer_buttons">
+    <a id="vutbr_show" class='btn btn-lg btn-primary univer_button' data-univer="1">Технический университет Брно</a>
+    <a id="mas_show" class='btn btn-lg btn-primary univer_button' data-univer="2">Масариков университет</a>
+  </div>
+  <!--&lt;!&ndash;<div style="display: none" id="masarikov">&ndash;&gt;-->
+
+  <div style="display: none" id="tasks_block">
+    <!--</div>-->
+    <a id="tasks_block_hide" class='btn btn-primary'>Назад</a>
+
+    <hr/>
+    <div id="index_filter" style="display: inline-block">
+      <%= render 'index_filter' %>
+    </div>
+
+    <div id="tasks_list_content">
+      <%= render 'tasks_list' %>
+    </div>
+    <br/>
+  </div>
+
 </div>
 <br/>
 <script>
+
     $(document).ready(function () {
-        $("#vutbr_show").click(function () {
-            $( "#h1_tasks" ).text( "Задачи технического университета Брно" );
-            $("#vutbr_show").hide(100);
-            $("#mas_show").hide(100);
-            $("#vutbr").show("slow");
-        });
+        $(".univer_button").click(function (e) {
+            console.log($(e.target).data().univer);
+            $("#univer_search").val($(e.target).data().univer);
+            $.rails.handleRemote($("#index_filter_form .current_page"));
+            $("#univer_buttons").hide();
+            $("#tasks_block").show();
 
-        $("#mas_show").click(function () {
-            $( "#h1_tasks" ).text( "Задачи Масарикова университета" );
-            $("#vutbr_show").hide(100);
-            $("#mas_show").hide(100);
-            $("#masarikov").show("slow");
         });
-
-        $("#masarikov_hide").click(function () {
-            $( "#h1_tasks" ).text( "Все задачи" );
-            $("#masarikov").hide(100);
-            $("#vutbr_show").show("slow");
-            $("#mas_show").show("slow");
+        $("#tasks_block_hide").click(function (e) {
+            $("#univer_buttons").show();
+            $("#tasks_block").hide();
 
         });
 
-        $("#vutbr_hide").click(function () {
-            $( "#h1_tasks" ).text( "Все задачи" );
-            $("#vutbr").hide(100);
-            $("#vutbr_show").show("slow");
-            $("#mas_show").show("slow");
+        if (window.location.hash == '#masarikov')  $("#mas_show").click();
+
+        $(document).on('ajax:before', function (e) {
+            console.log('ajax:before', e.target);
+            $(e.target).data('params', $("#index_filter_form").serializeArray());
         });
+
+        window.setup_handlers = function () {
+
+            $("#index_filter_form select").change(function () {
+                $.rails.handleRemote($("#index_filter_form .current_page"));
+            });
+
+        }
+        window.setup_handlers();
     });
 </script>
