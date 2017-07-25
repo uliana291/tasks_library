@@ -1,6 +1,6 @@
 == README
 
-This app has created just for my purpose - automatization of exams preparing
+This app was created just for single purpose - automatization of exams preparing. So it's useful (I guess) just for me
 
 And that's all.
 
